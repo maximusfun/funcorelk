@@ -1441,6 +1441,8 @@ void AddBattlegroundScripts()
 void AddSC_PWS_Transmogrification();
 void AddSC_CS_Transmogrification();
 void AddSC_arena_spectator_script();
+
+ void AddSC_npc_other();
 #endif
 
 void AddCustomScripts()
@@ -1454,5 +1456,7 @@ void AddCustomScripts()
      AddSC_npc_teleport();
 //spectator
 AddSC_arena_spectator_script();
+//customizer
+AddSC_npc_other();
 #endif
 }
