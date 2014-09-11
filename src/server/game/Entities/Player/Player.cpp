@@ -17959,6 +17959,7 @@ bool Player::isAllowedToLoot(const Creature* creature)
 
     switch (thisGroup->GetLootMethod())
     {
+        case MASTER_LOOT:
         case FREE_FOR_ALL:
             return true;
         case ROUND_ROBIN:
@@ -17968,7 +17969,6 @@ bool Player::isAllowedToLoot(const Creature* creature)
                 return true;
 
             return loot->hasItemFor(this);
-        case MASTER_LOOT:
         case GROUP_LOOT:
         case NEED_BEFORE_GREED:
             // may only loot if the player is the loot roundrobin player
