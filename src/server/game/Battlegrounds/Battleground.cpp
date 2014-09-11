@@ -1130,13 +1130,22 @@ void Battleground::EventPlayerLoggedOut(Player* player)
     m_Players[guid].OfflineRemoveTime = sWorld->GetGameTime() + MAX_OFFLINE_TIME;
     if (GetStatus() == STATUS_IN_PROGRESS)
     {
-        // drop flag and handle other cleanups
-        RemovePlayer(player, guid, GetPlayerTeam(guid));
-
-        // 1 player is logging out, if it is the last, then end arena!
-        if (isArena())
-            if (GetAlivePlayersCountByTeam(player->GetBGTeam()) <= 1 && GetPlayersCountByTeam(GetOtherTeam(player->GetBGTeam())))
-                EndBattleground(GetOtherTeam(player->GetBGTeam()));
+        if (!player->IsSpectator())
+        {
+            // drop flag and handle other cleanups
+            RemovePlayer(player, guid, GetPlayerTeam(guid));
+            // 1 player is logging out, if it is the last, then end arena!
+            if (isArena())
+                if (GetAlivePlayersCountByTeam(player->GetTeam()) <= 1 && GetPlayersCountByTeam(GetOtherTeam(player->GetTeam())))
+                    EndBattleground(GetOtherTeam(player->GetTeam()));
+        }
+    }
+    if (!player->IsSpectator())
+        player->LeaveBattleground();
+    else
+    {
+        player->TeleportToBGEntryPoint();
+        RemoveSpectator(player->GetGUID());
     }
 }
 
@@ -1831,4 +1840,13 @@ bool Battleground::CheckAchievementCriteriaMeet(uint32 criteriaId, Player const*
 {
     TC_LOG_ERROR("bg.battleground", "Battleground::CheckAchievementCriteriaMeet: No implementation for criteria %u", criteriaId);
     return false;
+}
+ 
+void Battleground::SendSpectateAddonsMsg(SpectatorAddonMsg msg)
+{
+    if (!HaveSpectators())
+        return;
+
+    for (SpectatorList::iterator itr = m_Spectators.begin(); itr != m_Spectators.end(); ++itr)
+        msg.SendPacket(*itr);
 }
