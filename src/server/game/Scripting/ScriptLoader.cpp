@@ -1442,6 +1442,7 @@ void AddSC_PWS_Transmogrification();
 void AddSC_CS_Transmogrification();
 void AddSC_arena_spectator_script();
 
+ void AddSC_npc_proff();
  void AddSC_npc_other();
 #endif
 
@@ -1455,8 +1456,10 @@ void AddCustomScripts()
      // TeleNPC2
      AddSC_npc_teleport();
 //spectator
-AddSC_arena_spectator_script();
+    AddSC_arena_spectator_script();
 //customizer
-AddSC_npc_other();
+    AddSC_npc_other();
+// profer
+	AddSC_npc_proff();
 #endif
 }

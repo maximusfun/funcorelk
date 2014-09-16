@@ -18,6 +18,7 @@ set(scripts_STAT_SRCS
     Custom/Transmog/Transmogrifier.cpp
     Custom/arena_spectator.cpp
     Custom/npc_other.cpp
+    Custom/npc_proff.cpp
 )
 
 message("  -> Prepared: Custom")
