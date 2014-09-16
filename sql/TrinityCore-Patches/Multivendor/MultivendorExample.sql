@@ -3,6 +3,6 @@ REPLACE INTO `creature_template` (`entry`, `difficulty_entry_1`, `difficulty_ent
 
 
 INSERT INTO `gossip_menu_option` (`menu_id`, `id`, `option_icon`, `option_text`, `option_id`, `npc_option_npcflag`, `action_menu_id`, `action_poi_id`, `box_coded`, `box_money`, `box_text`) VALUES
-(55555, 0, 4, 'Горное дело', 3, 128, 465, 0, 0, 0, ''),
-(55555, 1, 9, 'Травничество', 3, 128, 54, 0, 0, 0, ''),
-(55555, 2, 6, 'ткань и расходники', 3, 128, 35574, 0, 0, 0, '');
+(55555, 0, 4, 'Reagents', 3, 128, 465, 0, 0, 0, ''),
+(55555, 1, 9, 'Herb', 3, 128, 54, 0, 0, 0, ''),
+(55555, 2, 6, 'cloch and metall', 3, 128, 35574, 0, 0, 0, '');
